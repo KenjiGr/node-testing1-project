@@ -8,6 +8,8 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const newObj = Object.keys(obj).forEach(k => obj[k] = obj[k].trim());
+  return newObj
 }
 
 /**
@@ -20,6 +22,7 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  return Object.keys(obj).forEach(k => obj[k] = obj[k].trim());
 }
 
 /**
@@ -32,6 +35,8 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  let numArray = integers.map(obj => obj.integer)
+  return Math.max.apply(null, numArray)
 }
 
 class Counter {
