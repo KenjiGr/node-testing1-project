@@ -6,9 +6,15 @@
  * EXAMPLE
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
-function trimProperties(obj) {
+ function trimProperties(obj) {
   // ✨ implement
-  const newObj = Object.keys(obj).forEach(k => obj[k] = obj[k].trim());
+  // const newObj = Object.keys(obj).forEach(k => obj[k] = obj[k].trim());
+  // console.log(newObj)
+  const newObj = obj
+  for(var key in newObj) {
+    newObj[key] = newObj[key].trim();
+  }
+  console.log(newObj)
   return newObj
 }
 
@@ -20,9 +26,13 @@ function trimProperties(obj) {
  * EXAMPLE
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
-function trimPropertiesMutation(obj) {
+ function trimPropertiesMutation(obj) {
   // ✨ implement
-  return Object.keys(obj).forEach(k => obj[k] = obj[k].trim());
+  // console.log(Object.keys(obj).forEach(k => obj[k] = obj[k].trim()))
+  for(var key in obj) {
+    obj[key] = obj[key].trim();
+  }
+  console.log(obj)
 }
 
 /**
