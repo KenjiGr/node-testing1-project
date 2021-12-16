@@ -188,9 +188,6 @@ class Car {
  * })
  */
  async function isEvenNumberAsync(number) {
-  if(!number || !Number.integer(number)){
-    return false
-  } 
   if(number % 2 === 0) {
     return true
   }else{
