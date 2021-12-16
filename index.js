@@ -32,7 +32,7 @@
   for(var key in obj) {
     obj[key] = obj[key].trim();
   }
-  console.log(obj)
+  return obj
 }
 
 /**
@@ -56,6 +56,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.count = initialNumber
   }
 
   /**
@@ -71,6 +72,12 @@ class Counter {
    * counter.countDown() // returns 0
    */
   countDown() {
+    if(this.count === 0){
+      // console.log(this.count)
+      return this.count
+    }
+    // console.log(this.count)
+    return this.count-- 
     // ✨ implement
   }
 }
@@ -80,22 +87,17 @@ class Seasons {
    * [Exercise 5A] Seasons creates a seasons object
    */
   constructor() {
-    // ✨ initialize whatever properties are needed
+    this.seasons = ['spring', 'summer', 'fall', 'winter'];
+    this.count = 0
   }
 
-  /**
-   * [Exercise 5B] Seasons.prototype.next returns the next season
-   * @returns {string} - the next season starting with "summer"
-   *
-   * EXAMPLE
-   * const seasons = new Seasons()
-   * seasons.next() // returns "summer"
-   * seasons.next() // returns "fall"
-   * seasons.next() // returns "winter"
-   * seasons.next() // returns "spring"
-   * seasons.next() // returns "summer"
-   */
-  next() {
+   next() {
+    if(this.count < 3){
+      this.count++
+    }else{
+      this.count = 0
+    }
+    return this.seasons[this.count];
     // ✨ implement
   }
 }
@@ -108,8 +110,12 @@ class Car {
    * @param {number} mpg - miles the car can drive per gallon of gas
    */
   constructor(name, tankSize, mpg) {
+    this.name = name
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
+    this.mpg = mpg
+    this.range = this.tank * this.mpg
+    this.tankMax = tankSize
     // ✨ initialize whatever other properties are needed
   }
 
@@ -127,6 +133,17 @@ class Car {
    * focus.drive(200) // returns 600 (ran out of gas after 100 miles)
    */
   drive(distance) {
+    // console.log(this.range)
+    if(this.range > distance){
+      this.range -= distance
+      this.tank -= distance / this.mpg
+      return this.odometer += distance
+    }else{
+      // console.log((this.odometer += this.range) + ` ran out of gas after ${this.range} miles`)
+      this.tank = 0
+      return this.odometer += this.range + ` ran out of gas after ${this.range} miles`
+    }
+    this.range = 0
     // ✨ implement
   }
 
@@ -142,6 +159,17 @@ class Car {
    * focus.refuel(99) // returns 600 (tank only holds 20)
    */
   refuel(gallons) {
+    if(gallons + this.tank <= this.tankMax){
+      this.tank += gallons
+      this.range = this.tank * this.mpg
+      // console.log(this.range)
+      return this.range
+    }else{
+      this.tank = this.tankMax
+      this.range = this.tank * this.mpg
+      // console.log(this.range)
+      return this.range
+    }
     // ✨ implement
   }
 }
@@ -159,8 +187,15 @@ class Car {
  *    // result is false
  * })
  */
-function isEvenNumberAsync(number) {
-  // ✨ implement
+ async function isEvenNumberAsync(number) {
+  if(!number || !Number.integer(number)){
+    return false
+  } 
+  if(number % 2 === 0) {
+    return true
+  }else{
+    return false
+  }
 }
 
 module.exports = {
